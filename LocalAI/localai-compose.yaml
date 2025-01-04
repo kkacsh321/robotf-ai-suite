@@ -43,6 +43,9 @@ services:
       - NVIDIA_VISIBLE_DEVICES=all
       ## - API_KEYS=""
 
+    networks:
+      - ai_network
+
     deploy:
       resources:
         reservations:
@@ -51,3 +54,7 @@ services:
     stdin_open: true
     tty: true
     restart: unless-stopped
+
+networks:
+  ai_network:
+    driver: bridge

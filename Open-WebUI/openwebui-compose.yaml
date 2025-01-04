@@ -1,0 +1,43 @@
+version: "3.9"
+
+services:
+  openwebui:
+    container_name: openwebui
+
+    ## Change to your platform example linux/arm64 or linux/amd64
+    platform: linux/amd64
+
+    ## Platform runtime
+    # runtime: nvidia
+
+    ## Look at docs https://github.com/open-webui/open-webui
+    image: ghcr.io/open-webui/open-webui:main
+
+    ## Port to expose on machine
+    ports:
+      - 3000:3000
+
+    ## Model Volume mount <local path>:/app/backend/data
+    volumes:
+      - ../openwebui:/app/backend/data
+
+    ## Environment variables see docs
+    environment:
+      - PORT=3000
+      - OPENAI_API_BASE_URL=http://localai:8080/v1
+
+    networks:
+      - localai_ai_network
+
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: ["gpu"]
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
+
+networks:
+  localai_ai_network:
+    external: true

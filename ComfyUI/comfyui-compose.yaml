@@ -1,0 +1,38 @@
+version: "3.9"
+
+services:
+  comfyui:
+    container_name: comfyui
+
+    ## Change to your platform example linux/arm64 or linux/amd64
+    platform: linux/amd64
+
+    ## Platform runtime
+    runtime: nvidia
+
+    ## Look at docs https://github.com/YanWenKun/ComfyUI-Docker
+    image: yanwk/comfyui-boot:cu124-megapak
+
+    ## Port to expose on machine
+    ports:
+      - 8188:8188
+
+    ## Model Volume mount <local path>:/root/ComfyUI/
+    volumes:
+      - ../comfyui_source:/root/ComfyUI/
+
+    ## Environment variables see docs
+    environment:
+      - HOST_MODEL_PATH=/models
+      - NVIDIA_VISIBLE_DEVICES=all
+      ## Use for older GPU if having issues
+      # - CLI_ARGS="--disable-cuda-malloc"
+
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: ["gpu"]
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
