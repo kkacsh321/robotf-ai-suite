@@ -7,7 +7,7 @@
 
 - [Description](#description)
 - [Getting Started](#getting-started-🧹)
-  - [Docker Compose with LocalAI](#local-ai-with-docker-compose-🖤)
+  - [LocalAI with Docker Compose](#local-ai-with-docker-compose-🖤)
 - [Contact](#contact)
 - [Contributing](#contributing-👥)
 - [License](#license-📜)
