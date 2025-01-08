@@ -205,6 +205,8 @@ Shoutout to LocalAI for powering my Local LLM's [localai](https://localai.io)
 
 Thanks to [openwebui](https://github.com/open-webui)
 
+[flowise](https://github.com/FlowiseAI/Flowise) is a great project for building AI/LLM workflows and agents!
+
 We love [comfyui](https://github.com/comfyanonymous/ComfyUI) and [YanWenKun](https://github.com/YanWenKun/ComfyUI-Docker) for maintaining the docker images.
 
 Shoutout to [j4ys0n](https://github.com/j4ys0n/local-ai-stack) Who gave some original inspiration for this. See his repo in link.
