@@ -1,0 +1,62 @@
+version: "3.9"
+
+services:
+  flowise:
+    container_name: flowise
+
+    ## Change to your platform example linux/arm64 or linux/amd64
+    platform: linux/amd64
+
+    ## Look at docs https://github.com/FlowiseAI/Flowise
+    image: flowiseai/flowise:2.2.3
+
+    ## Port to expose on machine
+    ports:
+      - 3001:3001
+
+    ## Model Volume mount <local path>:/app/backend/data
+    volumes:
+      - ../flowise:/data
+
+    ## Environment variables see docs
+    environment:
+      - PORT=3001
+      - CORS_ORIGINS=*
+      - IFRAME_ORIGINS=*
+      - FLOWISE_USERNAME=admin
+      - FLOWISE_PASSWORD=password
+      - FLOWISE_FILE_SIZE_LIMIT=500mb
+      - DEBUG=false
+      - DATABASE_TYPE=postgres
+      - DATABASE_PORT=5432
+      - DATABASE_HOST=postgres
+      - DATABASE_NAME=flowise
+      - DATABASE_USER=pguser
+      - DATABASE_PASSWORD=mypassword
+      - DATABASE_SSL=false
+      - DATABASE_PATH=/data
+      - BLOB_STORAGE_PATH=/data/uploads
+      - APIKEY_PATH=/data
+      - SECRETKEY_PATH=/data
+      # - DATABASE_SSL_KEY_BASE64=
+      # - APIKEY_STORAGE_TYPE=
+      # - FLOWISE_SECRETKEY_OVERWRITE=
+      # - LOG_LEVEL=
+      # - LOG_PATH=
+      # - DISABLE_FLOWISE_TELEMETRY=
+      # - MODEL_LIST_CONFIG_JSON=
+      # - GLOBAL_AGENT_HTTP_PROXY=
+      # - GLOBAL_AGENT_HTTPS_PROXY=
+      # - GLOBAL_AGENT_NO_PROXY=
+      # - DISABLED_NODES=
+
+    networks:
+      - localai_ai_network
+
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
+
+networks:
+  localai_ai_network:
+    external: true

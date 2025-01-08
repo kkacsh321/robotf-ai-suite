@@ -8,8 +8,10 @@
 - [Description](#description)
 - [Getting Started](#getting-started-🧹)
   - [LocalAI with Docker Compose](#localai-with-docker-compose-🖤)
-  - [ComfyUI with Docker Compose](#comfyui-with-docker-compose-🏞️)
-  - [Open WebUI with Docker Compose](#open-webui-with-docker-compose-🏞️)
+  - [ComfyUI with Docker Compose](#comfyui-with-docker-compose)
+  - [Open WebUI with Docker Compose](#open-webui-with-docker-compose)
+  - [Flowise with Docker Compose](#flowise-with-docker-compose)
+  - [Postgres with Docker Compose](#postgres-with-docker-compose)
 - [Contact](#contact)
 - [Contributing](#contributing-👥)
 - [To-Do](#to-do-️☑️)
@@ -83,7 +85,7 @@ This calls docker-compose under the hood with the Makefile, to see more commands
 make help
 ```
 
-### ComfyUI with Docker Compose 🖤
+### ComfyUI with Docker Compose
 
 Edit the `ComfyUI/comfyui-compose.yaml` to your liking and match the volume mount, and environment variables you want to use. See the docs at [comfyui](https://github.com/comfyanonymous/ComfyUI) and [YanWenKun](https://github.com/YanWenKun/ComfyUI-Docker) for docs on the container.
 
@@ -109,7 +111,7 @@ make help
 
 Visit http://<your server ip>:8188 to see the ComfyUI UI
 
-### Open WebUI with Docker Compose 🖤
+### Open WebUI with Docker Compose
 
 Edit the `Open-WebUI/openwebui-compose.yaml` to your liking and match the volume mount, and environment variables you want to use. See the docs at [openwebui](https://github.com/open-webui)
 
@@ -125,10 +127,42 @@ To stop it
 make openwebui-down
 ```
 
-This calls docker-compose under the hood with the Makefile, to see more commands type
+Visit http://<your server ip>:3000 to see the Open WebUI
+
+### Flowise with Docker Compose
+
+Edit the `Flowise/flowise-compose.yaml` to your liking and match the volume mount, and environment variables you want to use. See the docs at [Flowise](https://github.com/FlowiseAI/Flowise)
+
+Flowise requires a local postgres instance for this run, therefore there is Postgres Docker-compose stack that will start-up first, along with LocalAI before Flowise starts.
+
+Set Up Docker Compose: Ensure you have Docker and Docker Compose installed, then run:
 
 ```bash
-make help
+make flowise-up
+```
+
+To stop it
+
+```bash
+make flowise-down
+```
+
+Visit http://<your server ip>:3001 to see the Flowise UI
+
+### Postgres with Docker Compose
+
+Edit the `Postgres/postgres-compose.yaml` to your liking and match the volume mount, and environment variables you want to use.
+
+Set Up Docker Compose: Ensure you have Docker and Docker Compose installed, then run:
+
+```bash
+make postgres-up
+```
+
+To stop it
+
+```bash
+make postgres-down
 ```
 
 ## Contact
@@ -170,6 +204,8 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 Shoutout to LocalAI for powering my Local LLM's [localai](https://localai.io)
 
 Thanks to [openwebui](https://github.com/open-webui)
+
+[flowise](https://github.com/FlowiseAI/Flowise) is a great project for building AI/LLM workflows and agents!
 
 We love [comfyui](https://github.com/comfyanonymous/ComfyUI) and [YanWenKun](https://github.com/YanWenKun/ComfyUI-Docker) for maintaining the docker images.
 

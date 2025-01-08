@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: postgres
+    restart: always
+    environment:
+      - POSTGRES_DB=flowise
+      - POSTGRES_USER=pguser
+      - POSTGRES_PASSWORD=mypassword
+      - PGDATA=/var/lib/postgresql/data
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+    command: postgres -c 'listen_addresses=*'
+
+    networks:
+      - localai_ai_network
+
+volumes:
+  pg-data:
+
+networks:
+  localai_ai_network:
+    external: true

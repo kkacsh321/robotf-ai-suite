@@ -1,0 +1,1 @@
+CREATE DATABASE n8n;
