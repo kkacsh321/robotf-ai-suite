@@ -79,6 +79,61 @@ openwebui-logs: ## Get logs from Open-WebUI container
 
 .PHONY: openwebui-logs
 
+
+## Flowise Docker Compose Commands
+
+flowise-up: localai-up postgres-up ## Start Flowise in the background
+	docker-compose -f ./Flowise/flowise-compose.yaml up -d
+
+.PHONY: flowise-up
+
+flowise-down: ## Stop the Flowise stack
+	docker-compose -f ./Flowise/flowise-compose.yaml down
+
+.PHONY: flowise-down
+
+flowise-restart: ## Restart Flowise container
+	docker-compose -f ./Flowise/flowise-compose.yaml restart
+
+.PHONY: flowise-restart
+
+flowise-exec: ## Exec into the Flowise container
+	docker exec -it flowise /bin/bash
+
+.PHONY: flowise-exec
+
+flowise-logs: ## Get logs from Flowise container
+	docker logs flowise
+
+.PHONY: flowise-logs
+
+## Postgres Docker Compose Commands
+
+postgres-up: ## Start Postgres in the background
+	docker-compose -f ./Postgres/postgres-compose.yaml up -d
+
+.PHONY: postgres-up
+
+postgres-down: ## Stop the Postgres stack
+	docker-compose -f ./Postgres/postgres-compose.yaml down
+
+.PHONY: postgres-down
+
+postgres-restart: ## Restart Postgres container
+	docker-compose -f ./Postgres/postgres-compose.yaml restart
+
+.PHONY: postgres-restart
+
+postgres-exec: ## Exec into the Postgres container
+	docker exec -it postgres /bin/bash
+
+.PHONY: postgres-exec
+
+postgres-logs: ## Get logs from Postgres container
+	docker logs postgres
+
+.PHONY: postgres-logs
+
 help: ## show this usage
 	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make \033[36m<target>\033[0m\n\nTargets:\n"} /^[a-zA-Z_-]+:.*?##/ { printf "  \033[36m%-10s\033[0m %s\n", $$1, $$2 }' $(MAKEFILE_LIST)
 .PHONY: help

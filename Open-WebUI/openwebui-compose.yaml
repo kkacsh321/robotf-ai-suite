@@ -7,9 +7,6 @@ services:
     ## Change to your platform example linux/arm64 or linux/amd64
     platform: linux/amd64
 
-    ## Platform runtime
-    # runtime: nvidia
-
     ## Look at docs https://github.com/open-webui/open-webui
     image: ghcr.io/open-webui/open-webui:main
 
