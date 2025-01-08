@@ -134,6 +134,14 @@ postgres-logs: ## Get logs from Postgres container
 
 .PHONY: postgres-logs
 
+all-up: localai-up postgres-up flowise-up openwebui-up comfyui-up ## Turns on all stacks
+
+.PHONY: all-up
+
+all-down: flowise-down openwebui-down comfyui-down postgres-down localai-down ## Turns off all stacks
+
+.PHONY: all-down
+
 help: ## show this usage
 	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make \033[36m<target>\033[0m\n\nTargets:\n"} /^[a-zA-Z_-]+:.*?##/ { printf "  \033[36m%-10s\033[0m %s\n", $$1, $$2 }' $(MAKEFILE_LIST)
 .PHONY: help

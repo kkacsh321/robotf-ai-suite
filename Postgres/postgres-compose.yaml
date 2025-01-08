@@ -3,6 +3,7 @@ version: "3.9"
 services:
   postgres:
     image: postgres:16-alpine
+    container_name: postgres
     restart: always
     environment:
       - POSTGRES_DB=flowise
@@ -11,34 +12,13 @@ services:
       - PGDATA=/var/lib/postgresql/data
     volumes:
       - pg-data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - "5432:5432"
     command: postgres -c 'listen_addresses=*'
 
     networks:
       - localai_ai_network
-
-    # Initialize databases
-    depends_on:
-      init-db:
-        condition: service_healthy
-
-  init-db:
-    image: postgres:16-alpine
-    restart: no
-    environment:
-      - PGPASSWORD=mypassword
-    depends_on:
-      - postgres
-    command: |
-      bash -c "
-        psql -h postgres -U myuser -d flowise -c 'CREATE DATABASE n8n;'
-      "
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -h postgres -U pguser"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
 
 volumes:
   pg-data:

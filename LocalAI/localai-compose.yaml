@@ -23,7 +23,7 @@ services:
 
     ## Model Volume mount <local path>:/models
     volumes:
-      - ../models:/models
+      - /var/localai/models:/models
 
     ## Environment variables see docs
     environment:

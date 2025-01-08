@@ -20,7 +20,7 @@ services:
 
     ## Environment variables see docs
     environment:
-      - PORT=3000
+      - PORT=3001
       - CORS_ORIGINS=*
       - IFRAME_ORIGINS=*
       - FLOWISE_USERNAME=admin
