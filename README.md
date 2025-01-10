@@ -14,6 +14,7 @@
   - [Postgres with Docker Compose](#postgres-with-docker-compose)
   - [n8n with Docker Compose](#n8n-with-docker-compose)
   - [ChromaDB with Docker Compose](#chromadb-with-docker-compose)
+  - [Unstructured API with Docker Compose](#untructured-api-with-docker-compose)
 - [Contact](#contact)
 - [Contributing](#contributing-👥)
 - [To-Do](#to-do-️☑️)
@@ -22,7 +23,7 @@
 
 ## Description
 
-Welcome to RoboTF's AI Suite of tools for running Large Language Models (LLM's) locally or self-hosted. This will be a collection of Docker Compose and other such resources for helping people get start running such tools as LocalAI, ComfyUI, Open WebUI, n8ns, Chromadb, postgres, and more!
+Welcome to RoboTF's AI Suite of tools for running Large Language Models (LLM's) locally or self-hosted. This will be a collection of Docker Compose and other such resources for helping people get start running such tools as LocalAI, ComfyUI, Open WebUI, n8ns, Chromadb, postgres, Unstructured API, and more for full stack of AI/LLM related tools.
 
 Check out the Youtube series for Build an Ubuntu AI/LLM Server from scratch here: [https://www.youtube.com/@RoboTFAI](https://www.youtube.com/@RoboTFAI)
 
@@ -98,9 +99,9 @@ Flowise `http://<your server ip>:3001`
 n8n `http://<your server ip>:5678`
 
 
-Postgres on port `<your-server-ip>:5432`
+Postgres on `<your-server-ip>:5432`
 
-ChromaDB on 8000 `<your-server-ip>:8000`
+ChromaDB on `<your-server-ip>:8000`
 
 Unstructured API on `<your-server-ip>:8003`
 
@@ -205,6 +206,8 @@ To stop it
 make postgres-down
 ```
 
+Postgres on `<your-server-ip>:5432`
+
 ### n8n with Docker Compose
 
 Edit the `n8n/n8n-compose.yaml` to your liking and match the volume mount, and environment variables you want to use.
@@ -238,6 +241,25 @@ To stop it
 ```bash
 make chroma-down
 ```
+ChromaDB available on `<your-server-ip>:8000`
+
+### Untructured API with Docker Compose
+
+Edit the `Unstructured-API/unstructuredapi-compose.yaml` to your liking and match the volume mount, and environment variables you want to use.
+
+Set Up Docker Compose: Ensure you have Docker and Docker Compose installed, then run:
+
+```bash
+make unstructured-up
+```
+
+To stop it
+
+```bash
+make unstructured-down
+```
+
+Unstructured API available on `<your-server-ip>:8003`
 
 ## Contact
 
