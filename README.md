@@ -7,6 +7,7 @@
 
 - [Description](#description)
 - [Getting Started](#getting-started-🧹)
+  - [Ubuntu Server 24.04 Bootstrap Guide](#ubuntu-server-2404-bootstrap-guide)
   - [LocalAI with Docker Compose](#localai-with-docker-compose-🖤)
   - [ComfyUI with Docker Compose](#comfyui-with-docker-compose)
   - [Open WebUI with Docker Compose](#open-webui-with-docker-compose)
@@ -105,6 +106,11 @@ ChromaDB on `<your-server-ip>:8000`
 
 Unstructured API on `<your-server-ip>:8003`
 
+### Ubuntu Server 24.04 Bootstrap Guide
+
+See the guide on setting up a fresh Ubuntu server 24.04 with all Nvidia drivers, cuda, toolkit, etc, etc at [Bootstrap Guide](/Ubuntu-bootstrap/Bootstrap.md)
+
+Once you have your server up with all dependencies move on to the LocalAI with Docker Compose below.
 
 ### LocalAI with Docker Compose 🖤
 
