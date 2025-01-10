@@ -134,11 +134,92 @@ postgres-logs: ## Get logs from Postgres container
 
 .PHONY: postgres-logs
 
-all-up: localai-up postgres-up flowise-up openwebui-up comfyui-up ## Turns on all stacks
+## N8N Docker Compose Commands
+
+n8n-up: localai-up postgres-up ## Start n8n in the background
+	docker-compose -f ./n8n/n8n-compose.yaml up -d
+
+.PHONY: n8n-up
+
+n8n-down: ## Stop the n8n stack
+	docker-compose -f ./n8n/n8n-compose.yaml down
+
+.PHONY: n8n-down
+
+n8n-restart: ## Restart n8n container
+	docker-compose -f ./n8n/n8n-compose.yaml restart
+
+.PHONY: n8n-restart
+
+n8n-exec: ## Exec into the n8n container
+	docker exec -it n8n /bin/bash
+
+.PHONY: n8n-exec
+
+n8n-logs: ## Get logs from n8n container
+	docker logs n8n
+
+.PHONY: n8n-logs
+
+## Chroma Docker Compose Commands
+
+chroma-up: localai-up ## Start ChromaDB in the background
+	docker-compose -f ./ChromaDB/chromadb-compose.yaml up -d
+
+.PHONY: chroma-up
+
+chroma-down: ## Stop the ChromaDB stack
+	docker-compose -f ./ChromaDB/chromadb-compose.yaml down
+
+.PHONY: chroma-down
+
+chroma-restart: ## Restart ChromaDB container
+	docker-compose -f ./ChromaDB/chromadb-compose.yaml restart
+
+.PHONY: chroma-restart
+
+chroma-exec: ## Exec into the ChromaDB container
+	docker exec -it chromadb /bin/bash
+
+.PHONY: chroma-exec
+
+chroma-logs: ## Get logs from ChromaDB container
+	docker logs chromadb
+
+.PHONY: chroma-logs
+
+## Unstructured API Docker Compose Commands
+
+unstructured-up: localai-up ## Start Unstructured-API in the background
+	docker-compose -f ./Unstructured-API/unstructuredapi-compose.yaml up -d
+
+.PHONY: unstructured-up
+
+unstructured-down: ## Stop the Unstructured-API stack
+	docker-compose -f ./Unstructured-API/unstructuredapi-compose.yaml down
+
+.PHONY: unstructured-down
+
+unstructured-restart: ## Restart Unstructured-API container
+	docker-compose -f ./Unstructured-API/unstructuredapi-compose.yaml restart
+
+.PHONY: unstructured-restart
+
+unstructured-exec: ## Exec into the Unstructured-API container
+	docker exec -it unstructuredapi /bin/bash
+
+.PHONY: unstructured-exec
+
+unstructured-logs: ## Get logs from Unstructured-API container
+	docker logs unstructuredapi
+
+.PHONY: unstructured-logs
+
+all-up: localai-up postgres-up chroma-up unstructured-up flowise-up n8n-up openwebui-up comfyui-up ## Turns on all stacks
 
 .PHONY: all-up
 
-all-down: flowise-down openwebui-down comfyui-down postgres-down localai-down ## Turns off all stacks
+all-down: flowise-down n8n-down openwebui-down comfyui-down unstructured-down chroma-down postgres-down localai-down ## Turns off all stacks
 
 .PHONY: all-down
 
