@@ -2,5 +2,12 @@
 .DS_Store
 flowise
 models
+models/*
 openwebui
+openwebui/*
 comfyui_source
+comfyui_source/*
+n8n_data
+n8n_data/*
+chroma_data
+chroma_data/*

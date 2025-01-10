@@ -12,6 +12,8 @@
   - [Open WebUI with Docker Compose](#open-webui-with-docker-compose)
   - [Flowise with Docker Compose](#flowise-with-docker-compose)
   - [Postgres with Docker Compose](#postgres-with-docker-compose)
+  - [n8n with Docker Compose](#n8n-with-docker-compose)
+  - [ChromaDB with Docker Compose](#chromadb-with-docker-compose)
 - [Contact](#contact)
 - [Contributing](#contributing-👥)
 - [To-Do](#to-do-️☑️)
@@ -20,7 +22,7 @@
 
 ## Description
 
-Welcome to RoboTF's AI Suite of tools for running Large Language Models (LLM's) locally or self-hosted. This will be a collection of Docker Compose and other such resources for helping people get start running such tools as LocalAI, ComfyUI, Open WebUI, and more!
+Welcome to RoboTF's AI Suite of tools for running Large Language Models (LLM's) locally or self-hosted. This will be a collection of Docker Compose and other such resources for helping people get start running such tools as LocalAI, ComfyUI, Open WebUI, n8ns, Chromadb, postgres, and more!
 
 Check out the Youtube series for Build an Ubuntu AI/LLM Server from scratch here: [https://www.youtube.com/@RoboTFAI](https://www.youtube.com/@RoboTFAI)
 
@@ -58,8 +60,50 @@ Targets:
   openwebui-restart  Restart Open-WebUI container
   openwebui-exec  Exec into the Open-WebUI container
   openwebui-logs  Get logs from Open-WebUI container
+  flowise-up  Start Flowise in the background
+  flowise-down  Stop the Flowise stack
+  flowise-restart  Restart Flowise container
+  flowise-exec  Exec into the Flowise container
+  flowise-logs  Get logs from Flowise container
+  postgres-up  Start Postgres in the background
+  postgres-down  Stop the Postgres stack
+  postgres-restart  Restart Postgres container
+  postgres-exec  Exec into the Postgres container
+  postgres-logs  Get logs from Postgres container
+  chroma-up   Start ChromaDB in the background
+  chroma-down  Stop the ChromaDB stack
+  chroma-restart  Restart ChromaDB container
+  chroma-exec  Exec into the ChromaDB container
+  chroma-logs  Get logs from ChromaDB container
+  unstructured-up  Start Unstructured-API in the background
+  unstructured-down  Stop the Unstructured-API stack
+  unstructured-restart  Restart Unstructured-API container
+  unstructured-exec  Exec into the Unstructured-API container
+  unstructured-logs  Get logs from Unstructured-API container
+  all-up      Turns on all stacks
+  all-down    Turns off all stacks
   help        show this usage
 ```
+
+Application URLs:
+
+LocalAI `http://<your server ip>:8080`
+
+ComfyUI `http://<your server ip>:8188`
+
+Open WebUI `http://<your server ip>:3000`
+
+Flowise `http://<your server ip>:3001`
+
+n8n `http://<your server ip>:5678`
+
+
+Postgres on port `<your-server-ip>:5432`
+
+ChromaDB on 8000 `<your-server-ip>:8000`
+
+Unstructured API on `<your-server-ip>:8003`
+
 
 ### LocalAI with Docker Compose 🖤
 
@@ -79,11 +123,7 @@ make localai-down
 
 **Warning LocalAI will download several models on it's first startup to handle Chat, Image Generation, etc, etc as this calls the AIO image. See more info at [localai](https://localai.io)
 
-This calls docker-compose under the hood with the Makefile, to see more commands type
-
-```bash
-make help
-```
+Visit `http://<your server ip>:8080` to see the LocalAI UI
 
 ### ComfyUI with Docker Compose
 
@@ -103,7 +143,7 @@ make comfyui-down
 
 **Warning ComfyUI will download several models on it's first startup to support Image Generation See more info at [YanWenKun](https://github.com/YanWenKun/ComfyUI-Docker)
 
-This calls docker-compose under the hood with the Makefile, to see more commands type
+Visit `http://<your server ip>:8188` to see the ComfyUI Application
 
 ```bash
 make help
@@ -127,7 +167,7 @@ To stop it
 make openwebui-down
 ```
 
-Visit http://<your server ip>:3000 to see the Open WebUI
+Visit `http://<your server ip>:3000` to see the Open WebUI
 
 ### Flowise with Docker Compose
 
@@ -165,6 +205,40 @@ To stop it
 make postgres-down
 ```
 
+### n8n with Docker Compose
+
+Edit the `n8n/n8n-compose.yaml` to your liking and match the volume mount, and environment variables you want to use.
+
+Set Up Docker Compose: Ensure you have Docker and Docker Compose installed, then run:
+
+```bash
+make n8n-up
+```
+
+To stop it
+
+```bash
+make n8n-down
+```
+
+Visit `http://<your server ip>:5678` to see the n8n UI
+
+### ChromaDB with Docker Compose
+
+Edit the `ChromaDB/chromadb-compose.yaml` to your liking and match the volume mount, and environment variables you want to use.
+
+Set Up Docker Compose: Ensure you have Docker and Docker Compose installed, then run:
+
+```bash
+make chroma-up
+```
+
+To stop it
+
+```bash
+make chroma-down
+```
+
 ## Contact
 
 <robot@robotf.ai>
@@ -193,7 +267,8 @@ git push origin feature/your-awesome-feature
 ## To-Do ☑️
 
 Lots better docs
-More services such as Flowise, n8n, etc
+
+More services such as prometheus, grafana, robotf testing, etc
 
 ## License 📜
 
@@ -203,10 +278,16 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 Shoutout to LocalAI for powering my Local LLM's [localai](https://localai.io)
 
-Thanks to [openwebui](https://github.com/open-webui)
+Thanks to [openwebui](https://github.com/open-webui) for providing a great AI/LLM chat interface
 
 [flowise](https://github.com/FlowiseAI/Flowise) is a great project for building AI/LLM workflows and agents!
 
 We love [comfyui](https://github.com/comfyanonymous/ComfyUI) and [YanWenKun](https://github.com/YanWenKun/ComfyUI-Docker) for maintaining the docker images.
+
+[n8n](https://docs.n8n.io/) is fun and awesome to work with
+
+[chroma](https://docs.trychroma.com/docs/overview/introduction) is a fast and easy to use AI application database for embedding, vector, and much more!
+
+[unstructured-api](https://docs.unstructured.io/welcome) is great at ingesting and processing unstructured documents for Retrieval Augmented Generation (RAG)
 
 Shoutout to [j4ys0n](https://github.com/j4ys0n/local-ai-stack) Who gave some original inspiration for this. See his repo in link.

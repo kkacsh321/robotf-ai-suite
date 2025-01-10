@@ -1,0 +1,34 @@
+version: "3.9"
+
+services:
+  chromadb:
+    container_name: chromadb
+
+    ## Change to your platform example linux/arm64 or linux/amd64
+    platform: linux/amd64
+
+    ## Look at docs https://github.com/chroma-core/chroma
+    image: ghcr.io/chroma-core/chroma:latest
+
+    ## Port to expose on machine
+    ports:
+      - 8000:8000
+
+    ## Model Volume mount <local path>:/chroma/chroma/
+    volumes:
+       - ../chroma_data:/chroma/chroma/
+
+    networks:
+      - localai_ai_network
+
+    ## Environment variables see docs
+    environment:
+      - IS_PERSISTENT=TRUE
+
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
+
+networks:
+  localai_ai_network:
+    external: true

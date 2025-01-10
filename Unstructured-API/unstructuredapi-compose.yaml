@@ -1,0 +1,35 @@
+version: "3.9"
+
+services:
+  unstructuredapi:
+    container_name: unstructuredapi
+
+    ## Change to your platform example linux/arm64 or linux/amd64
+    platform: linux/amd64
+
+    ## Look at docs https://github.com/Unstructured-IO/unstructured-api
+    image: downloads.unstructured.io/unstructured-io/unstructured-api:latest
+
+    ## Port to expose on machine
+    ports:
+      - 8003:8003
+
+    networks:
+      - localai_ai_network
+
+    ## Environment variables see docs
+    environment:
+      - UNSTRUCTURED_PARALLEL_MODE_ENABLED=false
+      - UNSTRUCTURED_PARALLEL_MODE_URL=""
+      - UNSTRUCTURED_PARALLEL_MODE_THREADS=3
+      - UNSTRUCTURED_PARALLEL_MODE_SPLIT_SIZE=1
+      - UNSTRUCTURED_PARALLEL_MODE_RETRY_ATTEMPTS=2
+      - PORT=8003
+
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
+
+networks:
+  localai_ai_network:
+    external: true
