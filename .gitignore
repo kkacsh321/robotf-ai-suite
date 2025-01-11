@@ -11,3 +11,5 @@ n8n_data
 n8n_data/*
 chroma_data
 chroma_data/*
+pg-data
+pg-data/*

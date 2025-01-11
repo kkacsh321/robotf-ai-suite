@@ -24,6 +24,7 @@ services:
     ## Environment variables see docs
     environment:
       - IS_PERSISTENT=TRUE
+      - CHROMA_SERVER_CORS_ALLOW_ORIGINS=["*"]
 
     stdin_open: true
     tty: true
