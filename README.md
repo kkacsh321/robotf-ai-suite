@@ -8,7 +8,7 @@
 - [Description](#description)
 - [Getting Started](#getting-started-🧹)
   - [Ubuntu Server 24.04 Bootstrap Guide](#ubuntu-server-2404-bootstrap-guide)
-  - [LocalAI with Docker Compose](#localai-with-docker-compose-🖤)
+  - [LocalAI with Docker Compose](#localai-with-docker-compose)
   - [ComfyUI with Docker Compose](#comfyui-with-docker-compose)
   - [Open WebUI with Docker Compose](#open-webui-with-docker-compose)
   - [Flowise with Docker Compose](#flowise-with-docker-compose)
@@ -112,7 +112,7 @@ See the guide on setting up a fresh Ubuntu server 24.04 with all Nvidia drivers,
 
 Once you have your server up with all dependencies move on to the LocalAI with Docker Compose below.
 
-### LocalAI with Docker Compose 🖤
+### LocalAI with Docker Compose
 
 Edit the `LocalAI/localai-compose.yaml` to your liking and match the volume mount, and environment variables you want to use. See the docs at [localai](https://localai.io)
 
