@@ -1,0 +1,35 @@
+version: "3.9"
+
+services:
+  robotf-llm-tools:
+    container_name: robotf-llm-tools
+
+    ## Change to your platform example linux/arm64 or linux/amd64
+    platform: linux/amd64
+
+    ## Look at docs https://docs.n8n.io/
+    image: robotf/robotf-llm-tools:v0.0.1
+
+    ## Port to expose on machine
+    ports:
+      - 8969:8969
+
+    ## Model Volume mount <local path>:/home/node/.n8n docker.n8n.io/n8nio/n8n
+    volumes:
+      - ../models:/models
+
+    ## Environment variables see docs
+    environment:
+      - HF_TOKEN=<insert your HF_TOKEN>
+      - MODELS_PATH="/models"
+
+    networks:
+      - localai_ai_network
+
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
+
+networks:
+  localai_ai_network:
+    external: true

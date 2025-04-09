@@ -215,11 +215,38 @@ unstructured-logs: ## Get logs from Unstructured-API container
 
 .PHONY: unstructured-logs
 
-all-up: localai-up postgres-up chroma-up unstructured-up flowise-up n8n-up openwebui-up comfyui-up ## Turns on all stacks
+## RoboTF-LLM-Tools Docker Compose Commands
+
+llm-tools-up: localai-up ## Start Open-WebUI in the background
+	docker-compose -f ./RoboTF-LLM-Tools/robotf-llm-tools-compose.yaml up -d
+
+.PHONY: llm-tools-up
+
+llm-tools-down: ## Stop the Open-WebUI stack
+	docker-compose -f ./RoboTF-LLM-Tools/openwebui-compose.yaml down
+
+.PHONY: llm-tools-down
+
+llm-tools-restart: ## Restart Open-WebUI container
+	docker-compose -f ./RoboTF-LLM-Tools/openwebui-compose.yaml restart
+
+.PHONY: llm-tools-restart
+
+llm-tools-exec: ## Exec into the Open-WebUI container
+	docker exec -it robotf-llm-tools /bin/bash
+
+.PHONY: llm-tools-exec
+
+llm-tools-logs: ## Get logs from Open-WebUI container
+	docker logs robotf-llm-tools
+
+.PHONY: llm-tools-logs
+ 
+all-up: localai-up postgres-up chroma-up unstructured-up flowise-up n8n-up openwebui-up comfyui-up llm-tools-up## Turns on all stacks
 
 .PHONY: all-up
 
-all-down: flowise-down n8n-down openwebui-down comfyui-down unstructured-down chroma-down postgres-down localai-down ## Turns off all stacks
+all-down: flowise-down n8n-down openwebui-down comfyui-down unstructured-down chroma-down postgres-down llm-tools-down localai-down ## Turns off all stacks
 
 .PHONY: all-down
 
