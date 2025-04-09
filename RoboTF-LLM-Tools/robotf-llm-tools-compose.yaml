@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   robotf-llm-tools:
     container_name: robotf-llm-tools
@@ -17,11 +15,12 @@ services:
     ## Model Volume mount <local path>:/home/node/.n8n docker.n8n.io/n8nio/n8n
     volumes:
       - ../models:/models
+      - /var/run/docker.sock:/var/run/docker.sock ## Need to run docker commands
 
     ## Environment variables see docs
     environment:
       - HF_TOKEN=<insert your HF_TOKEN>
-      - MODELS_PATH="/models"
+      - MODELS_PATH=/models
 
     networks:
       - localai_ai_network

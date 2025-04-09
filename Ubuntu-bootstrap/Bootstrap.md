@@ -74,6 +74,7 @@ Install Docker:
 
 ```bash
 sudo apt-get install docker.io
+sudo apt-get install docker-compose-v2
 ```
 
 Add the ubuntu user to the Docker group:
