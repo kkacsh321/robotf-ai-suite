@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   chromadb:
     container_name: chromadb
@@ -16,7 +14,7 @@ services:
 
     ## Model Volume mount <local path>:/chroma/chroma/
     volumes:
-       - ../chroma_data:/chroma/chroma/
+      - ../chroma_data:/chroma/chroma/
 
     networks:
       - localai_ai_network
