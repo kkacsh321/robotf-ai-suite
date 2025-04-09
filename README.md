@@ -16,6 +16,7 @@
   - [n8n with Docker Compose](#n8n-with-docker-compose)
   - [ChromaDB with Docker Compose](#chromadb-with-docker-compose)
   - [Unstructured API with Docker Compose](#untructured-api-with-docker-compose)
+  - [RoboTF LLM Tools with Docker Compose](#robotf-llm-tools-with-docker-compose)
 - [Contact](#contact)
 - [Contributing](#contributing-👥)
 - [To-Do](#to-do-️☑️)
@@ -82,6 +83,11 @@ Targets:
   unstructured-restart  Restart Unstructured-API container
   unstructured-exec  Exec into the Unstructured-API container
   unstructured-logs  Get logs from Unstructured-API container
+  llm-tools-up  Start Open-WebUI in the background
+  llm-tools-down  Stop the Open-WebUI stack
+  llm-tools-restart  Restart Open-WebUI container
+  llm-tools-exec  Exec into the Open-WebUI container
+  llm-tools-logs  Get logs from Open-WebUI container
   all-up      Turns on all stacks
   all-down    Turns off all stacks
   help        show this usage
@@ -99,12 +105,13 @@ Flowise `http://<your server ip>:3001`
 
 n8n `http://<your server ip>:5678`
 
-
 Postgres on `<your-server-ip>:5432`
 
 ChromaDB on `<your-server-ip>:8000`
 
 Unstructured API on `<your-server-ip>:8003`
+
+RoboTF LLM Tools on `<your-server-ip>:8989`
 
 ### Ubuntu Server 24.04 Bootstrap Guide
 
@@ -266,6 +273,24 @@ make unstructured-down
 ```
 
 Unstructured API available on `<your-server-ip>:8003`
+
+### RoboTF LLM Tools with Docker Compose
+
+Edit the `RoboTF-LLM-Tools/robotf-llm-tools-compose.yaml` to your liking and match the volume mount, and environment variables you want to use.
+
+Set Up Docker Compose: Ensure you have Docker and Docker Compose installed, then run:
+
+```bash
+make llm-tools-up
+```
+
+To stop it
+
+```bash
+make llm-tools-down
+```
+
+RoboTF LLM Tools available on `<your-server-ip>:8969`
 
 ## Contact
 
