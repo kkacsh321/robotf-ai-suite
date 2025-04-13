@@ -9,7 +9,7 @@ services:
     runtime: nvidia
 
     ## Look at docs https://github.com/YanWenKun/ComfyUI-Docker
-    image: yanwk/comfyui-boot:cu124-megapak
+    image: yanwk/comfyui-boot:cu124-megapak-20250407
 
     ## Port to expose on machine
     ports:
