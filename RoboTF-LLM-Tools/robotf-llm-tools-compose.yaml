@@ -5,14 +5,14 @@ services:
     ## Change to your platform example linux/arm64 or linux/amd64
     platform: linux/amd64
 
-    ## Look at docs https://docs.n8n.io/
+    ## Look at docs https://github.com/kkacsh321/robotf-llm-tools
     image: robotf/robotf-llm-tools:v0.0.1
 
     ## Port to expose on machine
     ports:
       - 8969:8969
 
-    ## Model Volume mount <local path>:/home/node/.n8n docker.n8n.io/n8nio/n8n
+    ## Model Volume mount and docker sock mount for commands
     volumes:
       - ../models:/models
       - /var/run/docker.sock:/var/run/docker.sock ## Need to run docker commands
