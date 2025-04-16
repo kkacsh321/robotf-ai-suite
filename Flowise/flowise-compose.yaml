@@ -6,7 +6,7 @@ services:
     platform: linux/amd64
 
     ## Look at docs https://github.com/FlowiseAI/Flowise
-    image: flowiseai/2.2.7-patch.1
+    image: flowiseai/flowise:2.2.7-patch.1
 
     ## Port to expose on machine
     ports:
